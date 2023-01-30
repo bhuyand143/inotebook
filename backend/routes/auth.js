@@ -6,7 +6,7 @@ const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const JWT_SECRET="MySignature";
 
-//Create User Section
+//Route1: Creating User using /api/auth/createUser post Method
 
 router.post('/createUser', [
     body('name', 'Enter a valid name').isLength({ min: 3 }), //first is th field second is trhe error msg
@@ -33,18 +33,52 @@ router.post('/createUser', [
             email: req.body.email,
         })
         const data={
-            person:{
+            user:{
                Id:user._id
             }
         }
-        console.log(data);
         const authToken= jwt.sign(data,JWT_SECRET);
         res.json({authToken});
     } catch (error) {
         console.error(error.message);
-        res.status(500).send("Error Occured!")
+        res.status(500).send("Internal Server Error!");
     }
 })
 
+
+//Route 2: Authenticating User using /api/auth/login post Method
+
+router.post('/login',[
+    body('email', 'Enter a valid email').isEmail(),
+    body('password','Password can not be blank!').exists(),
+],async(req,res)=>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const {email,password}=req.body;
+    try {
+        let user=await User.findOne({email})
+        if(!user)
+        {
+            return res.status(400).json({error:"Please try to login with correct credentials"});
+        }
+        const passwordCompare=await bcrypt.compare(password,user.password);
+        if(!passwordCompare)
+        {
+            return res.status(400).json({error:"Please try to login with correct credentials"});
+        }
+        const data={ //payloads
+            user:{
+               Id:user._id
+            }
+        }
+        const authToken= jwt.sign(data,JWT_SECRET);
+        res.json(authToken);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error!")
+    }
+})
 
 module.exports = router
