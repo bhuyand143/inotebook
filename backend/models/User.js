@@ -20,5 +20,5 @@ const UserSchema=new mongoose.Schema({
     }
 });
 const User=mongoose.model('User',UserSchema);
-User.createIndexes();
+// User.createIndexes(); it helps in creating indexes that will make the content unique
 module.exports=User;
