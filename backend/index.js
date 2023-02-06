@@ -11,6 +11,6 @@ app.use('/api/notes',require('./routes/notes'))
 
 
 app.listen(5000,()=>{
-    console.log('Listening at port 5000!');
+    console.log('iNotebook App Listening at port 5000!');
 })
 
