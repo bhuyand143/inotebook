@@ -6,7 +6,7 @@ const Notes = () => {
     const context = useContext(noteContext);
     const {notes, getNotes,editNote} = context;
 
-    const [note, setNote] = useState({title:"",description:"",tag:"deafult"})
+    const [note, setNote] = useState({id:"",title:"",description:"",tag:"deafult"})
     useEffect(() => {
         getNotes();
         //eslint-disable-next-line 
@@ -17,10 +17,11 @@ const Notes = () => {
         setNote(CurrentNote);
     }
     const ref = useRef(null)
+    const refclose = useRef(null)
 
     const handleclick=(e)=>{
-        e.preventDefault();
-        // editNote(note.title,note.description,note.tag);
+        refclose.current.click();
+        editNote(note._id,note.title,note.description,note.tag);
     }
     const onChange=(e)=>{
         setNote({...note,[e.target.name]:e.target.value}) // any thing that changes should be replaced with the value which is in name  all others will be same as before
@@ -57,7 +58,7 @@ const Notes = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button ref={refclose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-primary" onClick={handleclick}>Update Note!</button>
                         </div>
                     </div>
