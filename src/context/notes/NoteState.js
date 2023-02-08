@@ -30,7 +30,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title,description,tag})
     });
-    // getNotes();
+    getNotes();
     const json =await response.json();
     console.log(json);
 
@@ -43,7 +43,7 @@ const NoteState = (props) => {
     //   "date": "2023-02-07T02:49:36.550Z",
     //   "__v": 0
     // };
-    setNotes(notes.concat(json));
+    // setNotes(notes.concat(json));
   }
 
   //Delete a note
