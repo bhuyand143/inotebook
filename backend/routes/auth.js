@@ -25,7 +25,7 @@ router.post('/createUser', [
     try {
         let user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(400).json({ error: "Duplicate Email" })
+            return res.status(400).json({ error: "Duplicate Email",success})
         }
         const salt = await bcrypt.genSalt(10);
         const secPass = await bcrypt.hash(req.body.password, salt);
@@ -58,13 +58,13 @@ router.post('/login', [
     let success=false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(400).json({ errors: errors.array(),success });
     }
     const { email, password } = req.body;
     try {
         let user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({ error: "Please try to login with correct credentials" });
+            return res.status(400).json({ error: "Please try to login with correct credentials",success });
         }
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
@@ -91,7 +91,7 @@ router.post('/getuser',fetchuser, async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     try {
-        userId = req.user.Id;
+        let userId = req.user.Id;
         const user = await User.findById(userId).select("-password"); //Selecting every element except the password
         res.send(user);
     } catch (error) {

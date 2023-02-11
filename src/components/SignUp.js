@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "",name:"",cpassword:""})
   let navigate = useNavigate();//for history
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(credentials.password!==credentials.cpassword)
     {
-      alert("Password and confirm Password are different!");
+      props.showAlert("Password and confirm Password are different!",'danger');
     }
     else{
       const url = "http://localhost:5000/api/auth/createUser/";
@@ -23,11 +23,13 @@ const SignUp = () => {
     console.log(json);
     if (json.success) {
       //redirect
-      navigate('/');
+      
+      props.showAlert('Account Created Successfully','success');
       localStorage.setItem('token', json.authToken);
+      navigate('/');
     }
     else {
-      alert("Invalid Details!");
+      props.showAlert(json.error,"danger");
     }
     }
   }
@@ -37,6 +39,7 @@ const SignUp = () => {
 
   return (
     <div className='container'>
+      <h2 className='my-3'> Create an account to use iNotebook</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Name</label>
@@ -55,7 +58,10 @@ const SignUp = () => {
           <label htmlFor="cpassword" className="form-label">Confirm Password</label>
           <input type="password" name='cpassword' className="form-control" id="cpassword" onChange={onChange} required minLength={5} />
         </div>
+        <div className="d-flex justify-content-between">
         <button type="submit" className="btn btn-primary">Submit</button>
+        <Link to="/login"  className="form-text align-self-end">Already have an Account!</Link>
+        </div>
       </form>
     </div>
   )
