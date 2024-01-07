@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 let fetchuser=require('../middleware/fetchuser')
-const JWT_SECRET = "MySignature";
+const JWT_SECRET = process.env.JWT_SIGN;
 
 //Route1: Creating User using /api/auth/createUser post Method
 

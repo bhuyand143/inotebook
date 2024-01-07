@@ -8,7 +8,8 @@ const SignUp = (props) => {
     e.preventDefault();
     if(credentials.password!==credentials.cpassword)
     {
-      props.showAlert("Password and confirm Password are different!",'danger');
+      // props.showAlert("Password and confirm Password are different!",'danger');
+      alert('check your Password!');
     }
     else{
       const url = "http://localhost:5000/api/auth/createUser/";
