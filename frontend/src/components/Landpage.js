@@ -9,7 +9,7 @@ const Landpage = () => {
           <main class="px-3">
             <h1>iNotebook!</h1>
             <p>Making notekeeping easy!</p>
-            <Link to="/home" class="btn btn-lg btn-secondary bg-white">Start</Link>
+            <Link to="/home" class="btn btn-lg btn-secondary ">Start</Link>
           </main>
         </div>
         <footer class="mt-auto text-white-50">
