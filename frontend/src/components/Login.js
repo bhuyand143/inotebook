@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 const Login = (props) => {
     const [credentials, setCredentials] = useState({email:"",password:""})
+    const host = process.env.REACT_APP_HOST_URL;
     let navigate=useNavigate();//for history
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const url = "http://localhost:5000/api/auth/login/";
+        const url = `${host}/api/auth/login/`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -19,7 +20,7 @@ const Login = (props) => {
             //redirect
             localStorage.setItem('token',json.authToken);
             props.showAlert('Logged in Successfully','success');
-            navigate('/');
+            navigate('/home');
         }
         else
         {

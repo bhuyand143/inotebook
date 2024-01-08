@@ -14,9 +14,8 @@ const Notes = (props) => {
         if (localStorage.getItem('token')) {
             getNotes();
         }
-        else
-        {
-            props.showAlert('Please Login to Continue!','danger')
+        else {
+            props.showAlert('Please Login to Continue!', 'danger')
             navigate('/login');
         }
         //eslint-disable-next-line 
@@ -75,12 +74,14 @@ const Notes = (props) => {
                     </div>
                 </div>
             </div>
-            <div className='row my-3'>
-                <h2>Your Notes</h2>
-                {notes.length === 0 && <div className='container'><h6>No Notes to Display</h6></div>}
-                {notes.map((note) => {
-                    return <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />;
-                })}
+            <div className='container'>
+                <div className='row my-3'>
+                    <h2>Your Notes</h2>
+                    {notes.length === 0 && <div className='container'><h6>No Notes to Display</h6></div>}
+                    {notes.map((note) => {
+                        return <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />;
+                    })}
+                </div>
             </div>
         </>
 

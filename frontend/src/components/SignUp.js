@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'; 
 
 const SignUp = (props) => {
-  const [credentials, setCredentials] = useState({ email: "", password: "",name:"",cpassword:""})
+  const [credentials, setCredentials] = useState({ email: "", password: "",name:"",cpassword:""});
+  const host = process.env.REACT_APP_HOST_URL;
   let navigate = useNavigate();//for history
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +13,7 @@ const SignUp = (props) => {
       alert('check your Password!');
     }
     else{
-      const url = "http://localhost:5000/api/auth/createUser/";
+      const url = `${host}/api/auth/createUser/`;
       const response = await fetch(url, {
       method: 'POST',
       headers: {

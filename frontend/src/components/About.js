@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom'
 const About = (props) => {
   const [feeds, setFeeds] = useState({firstname:"",lastname:"",email:"",feedback:""})
   let navigate = useNavigate();//for history
+  const host = process.env.REACT_APP_HOST_URL;
   const handleSubmit = async (e) => { 
       try{
           e.preventDefault();
-          const url = "http://localhost:5000/api/contact/postfeedback/";
+          const url = `${host}/api/contact/postfeedback/`;
           const response = await fetch(url, {
           method: 'POST',
           headers: {
@@ -27,7 +28,7 @@ const About = (props) => {
     setFeeds({ ...feeds, [e.target.name]: e.target.value }) // any thing that changes should be replaced with the value which is in name  all others will be same as before
   }
   return (
-    <div>
+    <div className='container'>
         <h2>Contact Us</h2>
         <form onSubmit={handleSubmit} >
             <div className="row">
