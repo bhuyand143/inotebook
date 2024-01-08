@@ -12,8 +12,8 @@ const Landpage = () => {
             <Link to="/home" class="btn btn-lg btn-secondary ">Start</Link>
           </main>
         </div>
-        <footer class="mt-auto text-white-50">
-          <p>&copy;2023</p>
+        <footer class="mt-auto ">
+          <p>&copy;Dibyajyoti Bhuyan</p>
         </footer>
       </div>
     </div>
