@@ -13,7 +13,7 @@ const Landpage = () => {
           </main>
         </div>
         <footer class="mt-auto ">
-          <p>&copy;Dibyajyoti Bhuyan <a href="www.github.com/bhuyand143/iNotebook">GitHub</a></p>
+          <a href="https://www.github.com/bhuyand143/" target='_blank'>&copy;Dibyajyoti Bhuyan</a>
         </footer>
       </div>
     </div>
