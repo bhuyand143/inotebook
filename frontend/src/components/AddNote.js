@@ -23,7 +23,7 @@ const AddNote = (props) => {
                 <form className='my-3'>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Title</label>
-                        <input type="text" className="form-control" id="title" name="title" value={note.title} aria-describedby="emailHelp" onChange={onChange} placeholder={"Give a title(Minimum 3 letters)"} minLength={3} required />
+                        <input type="text" className="form-control" id="title" name="title" value={note.title} aria-describedby="emailHelp" onChange={onChange} placeholder={"Give a title (Minimum 3 letters)"} minLength={3} required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label">Description</label>

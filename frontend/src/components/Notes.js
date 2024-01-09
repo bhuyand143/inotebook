@@ -54,7 +54,7 @@ const Notes = (props) => {
                             <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name="title" value={note.title} onChange={onChange} placeholder={"Give a title(Minimum 3 letters)"} minLength={3} required/>
+                                    <input type="text" className="form-control" id="etitle" name="title" value={note.title} onChange={onChange} placeholder={"Give a title (Minimum 3 letters)"} minLength={3} required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
