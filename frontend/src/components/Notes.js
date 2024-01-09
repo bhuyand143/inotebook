@@ -54,11 +54,11 @@ const Notes = (props) => {
                             <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name="title" value={note.title} onChange={onChange} />
+                                    <input type="text" className="form-control" id="etitle" name="title" value={note.title} onChange={onChange} placeholder={"Give a title(Minimum 3 letters)"} minLength={3} required/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <input type="text" className="form-control" name='description' id="edescription" value={note.description} onChange={onChange} />
+                                    <input type="text" className="form-control" name='description' id="edescription" value={note.description} onChange={onChange} placeholder={"Provide Description here (Minimum 5 letters)"} minLength={5}/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
@@ -69,7 +69,7 @@ const Notes = (props) => {
                         </div>
                         <div className="modal-footer">
                             <button ref={refclose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" disabled={note.title.length < 5 || note.description.length < 5} onClick={handleclick}>Update Note!</button>
+                            <button type="button" className="btn btn-primary" disabled={note.title.length < 3 || note.description.length < 5} onClick={handleclick}>Update Note!</button>
                         </div>
                     </div>
                 </div>
