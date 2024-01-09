@@ -28,7 +28,7 @@ const SignUp = (props) => {
       
       props.showAlert('Account Created Successfully','success');
       localStorage.setItem('token', json.authToken);
-      navigate('/');
+      navigate('/home');
     }
     else {
       props.showAlert(json.error,"danger");
