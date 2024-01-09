@@ -62,7 +62,7 @@ const Notes = (props) => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tag</label>
-                                    <input type="text" className="form-control" name='tag' id="etag" value={note.tag} onChange={onChange} />
+                                    <input type="text" className="form-control" name='tag' id="etag" value={note.tag} onChange={onChange} placeholder='Provide a tag e.g. General' required />
                                 </div>
                                 {/* <button type="submit" className="btn btn-primary" onClick={handleclick}>Add Note</button> */}
                             </form>
